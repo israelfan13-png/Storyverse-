@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Read Story - StoryVerse</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+<header class="navbar">
+
+    <div class="logo">
+        📚 StoryVerse
+    </div>
+
+    <nav>
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="publish.html">
+            Publish
+        </a>
+
+    </nav>
+
+</header>
+
+
+<main>
+
+<section class="reader">
+
+    <h1 id="storyTitle">
+        Loading story...
+    </h1>
+
+    <p id="storyAuthor"></p>
+
+    <p id="storyGenre"></p>
+
+
+    <hr>
+
+
+    <h2 id="chapterTitle"></h2>
+
+
+    <article id="storyContent">
+
+        Loading chapter...
+
+    </article>
+
+
+    <div class="reader-buttons">
+
+        <button onclick="previousChapter()">
+            ← Previous
+        </button>
+
+        <button onclick="nextChapter()">
+            Next →
+        </button>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>

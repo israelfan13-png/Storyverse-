@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>StoryVerse</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="logo">
+        📚 StoryVerse
+    </div>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="#latest">Latest</a>
+        <a href="#genres">Genres</a>
+        <a href="publish.html">Publish</a>
+    </nav>
+
+</header>
+
+
+<main>
+
+<section class="hero">
+
+    <h1>Discover Your Next Story</h1>
+
+    <p>
+        Read amazing stories, discover new writers,
+        and share your own imagination with the world.
+    </p>
+
+    <div class="search-box">
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search stories..."
+        >
+
+        <button onclick="searchStories()">
+            Search
+        </button>
+
+    </div>
+
+</section>
+
+
+<section id="genres" class="section">
+
+    <h2>Explore Genres</h2>
+
+    <div class="genres">
+
+        <button onclick="filterGenre('All')">
+            All
+        </button>
+
+        <button onclick="filterGenre('Fantasy')">
+            Fantasy
+        </button>
+
+        <button onclick="filterGenre('Action')">
+            Action
+        </button>
+
+        <button onclick="filterGenre('Romance')">
+            Romance
+        </button>
+
+        <button onclick="filterGenre('Mystery')">
+            Mystery
+        </button>
+
+        <button onclick="filterGenre('Adventure')">
+            Adventure
+        </button>
+
+    </div>
+
+</section>
+
+
+<section id="latest" class="section">
+
+    <h2>Latest Stories</h2>
+
+    <div id="storyContainer" class="story-grid"></div>
+
+</section>
+
+</main>
+
+
+<footer>
+
+    <p>© 2026 StoryVerse</p>
+
+    <p>
+        Read • Write • Discover
+    </p>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
