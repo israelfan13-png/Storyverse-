@@ -1,93 +1,95 @@
+import { initializeApp } 
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+    getAuth,
+    signInWithEmailAndPassword
+} 
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+
 const firebaseConfig = {
-  apiKey: "AIzaSyD_xmvwQIaCfeDxN2twWW-s-F77SVbWEnE",
-  authDomain: "storyverse-8e60d.firebaseapp.com",
-  databaseURL: "https://storyverse-8e60d-default-rtdb.firebaseio.com",
-  projectId: "storyverse-8e60d",
-  storageBucket: "storyverse-8e60d.firebasestorage.app",
-  messagingSenderId: "433894304573",
-  appId: "1:433894304573:web:3d93fcf3c6ea42c6653354",
-  measurementId: "G-926547Y670"
+    apiKey: "AIzaSyD_xmvwQIaCfeDxN2twWW-s-F77SVbWEnE",
+    authDomain: "storyverse-8e60d.firebaseapp.com",
+    databaseURL: "https://storyverse-8e60d-default-rtdb.firebaseio.com",
+    projectId: "storyverse-8e60d",
+    storageBucket: "storyverse-8e60d.firebasestorage.app",
+    messagingSenderId: "433894304573",
+    appId: "1:433894304573:web:3d93fcf3c6ea42c6653354",
+    measurementId: "G-926547Y670"
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-
-
-import {
-  initializeApp
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-
-import {
-  getAuth,
-  signInWithEmailAndPassword
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
-
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-
 
 // Initialize Authentication
 const auth = getAuth(app);
 
 
-// Get the login form
+// Get login form
 const loginForm = document.getElementById("loginForm");
 
 
 // Listen for login
 loginForm.addEventListener("submit", async (event) => {
 
-  event.preventDefault();
+    event.preventDefault();
 
-  const email = document.getElementById("loginEmail").value;
-  const password = document.getElementById("loginPassword").value;
-  const message = document.getElementById("loginMessage");
+    const email = document.getElementById("loginEmail").value.trim();
+    const password = document.getElementById("loginPassword").value;
 
-  message.textContent = "Logging in...";
+    const message = document.getElementById("loginMessage");
 
-  try {
+    message.textContent = "Logging in...";
 
-    const userCredential = await signInWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
+    try {
 
-    const user = userCredential.user;
+        const userCredential = await signInWithEmailAndPassword(
+            auth,
+            email,
+            password
+        );
 
-    message.textContent = "Login successful!";
+        const user = userCredential.user;
 
-    console.log("Logged in user:", user);
+        console.log("Logged in user:", user);
 
-    // Send user to the homepage
-    window.location.href = "index.html";
+        message.textContent = "Login successful!";
 
-  } catch (error) {
+        // Go to homepage
+        window.location.href = "index.html";
 
-    console.error(error);
+    } catch (error) {
 
-    if (error.code === "auth/invalid-credential") {
-      message.textContent = "Incorrect email or password.";
+        console.error("Login error:", error);
+
+        if (error.code === "auth/invalid-credential") {
+
+            message.textContent = "Incorrect email or password.";
+
+        } 
+        else if (error.code === "auth/invalid-email") {
+
+            message.textContent = "Please enter a valid email address.";
+
+        } 
+        else if (error.code === "auth/user-disabled") {
+
+            message.textContent = "This account has been disabled.";
+
+        } 
+        else if (error.code === "auth/too-many-requests") {
+
+            message.textContent = "Too many attempts. Please try again later.";
+
+        } 
+        else {
+
+            message.textContent = "Login failed: " + error.message;
+
+        }
+
     }
-
-    else if (error.code === "auth/user-not-found") {
-      message.textContent = "No account exists with this email.";
-    }
-
-    else if (error.code === "auth/wrong-password") {
-      message.textContent = "Incorrect password.";
-    }
-
-    else if (error.code === "auth/invalid-email") {
-      message.textContent = "Please enter a valid email address.";
-    }
-
-    else {
-      message.textContent = "Login failed. Please try again.";
-    }
-  }
 
 });
